@@ -7,8 +7,6 @@ public class Calculator {
         Scanner sc = new Scanner(System.in);
 
         while(true) {
-            int result = 0;
-
             System.out.print("첫 번째 숫자를 입력하세요 : ");
             int firstNum = Integer.parseInt(sc.nextLine());
             System.out.print("두 번째 숫자를 입력하세요 : ");
