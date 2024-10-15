@@ -19,7 +19,32 @@ public class ArithmeticCalculator<T extends Number> {
         }
     }
 
-    public T calculate(double number1, double number2){
-        return (T) operatorType.calculate(number1, number2);
+    public T calculate(T number1, T number2){
+        Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
+        return (T)Double.valueOf(result.doubleValue());
+        /*try{
+            return (T)Integer.valueOf(result.intValue());
+        }catch(Exception e){
+
+        }*/
     }
 }
+
+/*class Results{
+    private int intResult;
+    private double doubleResult;
+
+    public void setIntResult(int intResult) {
+        this.intResult = intResult;
+    }
+    public void setDoubleResult(double doubleResult) {
+        this.doubleResult = doubleResult;
+    }
+
+    public int getIntResult(){
+        return (int)doubleResult + intResult;
+    }
+    public double getDoubleResult(){
+        return doubleResult+intResult;
+    }
+}*/
