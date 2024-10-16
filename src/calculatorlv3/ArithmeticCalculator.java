@@ -32,9 +32,9 @@ public class ArithmeticCalculator<T extends Number> {
         }
     }
 
-    public double calculate() throws WrongOperatorException{
+    public double calculate() throws WrongInputException {
         if(operatorType == null){
-            throw new WrongOperatorException(Character.toString(operator));
+            throw new WrongInputException(Character.toString(operator));
         }else {
             Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
             return result.doubleValue();

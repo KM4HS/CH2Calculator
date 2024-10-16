@@ -1,7 +1,5 @@
 package calculatorlv3;
 
-import com.sun.nio.file.ExtendedCopyOption;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,21 +18,21 @@ public class App {
             System.out.print("첫 번째 숫자를 입력하세요:");
             try{
                 num1 = parser.parseNumber(sc.nextLine());
-            }catch(WrongOperatorException e){
+            }catch(WrongInputException e){
                 System.out.println(e.getMessage());
             }
 
             System.out.print("두 번째 숫자를 입력하세요:");
             try{
                 num2 = parser.parseNumber(sc.nextLine());
-            }catch(WrongOperatorException e){
+            }catch(WrongInputException e){
                 System.out.println(e.getMessage());
             }
 
             System.out.print("사칙연산 기호를 입력하세요: ");
             try{
                 operator = parser.parseOperator(sc.nextLine());
-            }catch(WrongOperatorException e){
+            }catch(WrongInputException e){
                 System.out.println(e.getMessage());
             }
 
@@ -53,7 +51,7 @@ public class App {
                     System.out.println("결과 : " + result);
                     calculationHistories.add(new CalculationHistory(num1, num2, operator, result));
                 }
-            } catch (WrongOperatorException e) {
+            } catch (WrongInputException e) {
                 System.out.println(e.getMessage());
             }
 

@@ -1,4 +1,4 @@
-package calculatorLv2;
+package calculatorlv2;
 
 public abstract class AbstractOperation {
     abstract double calculate(int firstNum, int secondNum);
