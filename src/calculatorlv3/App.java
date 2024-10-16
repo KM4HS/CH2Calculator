@@ -10,7 +10,8 @@ public class App {
         ArrayList<CalculationHistory> calculationHistories = new ArrayList<>();
 
         while (true) {
-            double result = 0;
+            ArithmeticCalculator calculator;
+            double result;
             double num1 = 0;
             double num2 = 0;
             char operator=' ';
@@ -20,6 +21,8 @@ public class App {
                 num1 = parser.parseNumber(sc.nextLine());
             }catch(WrongInputException e){
                 System.out.println(e.getMessage());
+                System.out.println();
+                continue;
             }
 
             System.out.print("두 번째 숫자를 입력하세요:");
@@ -27,6 +30,8 @@ public class App {
                 num2 = parser.parseNumber(sc.nextLine());
             }catch(WrongInputException e){
                 System.out.println(e.getMessage());
+                System.out.println();
+                continue;
             }
 
             System.out.print("사칙연산 기호를 입력하세요: ");
@@ -34,11 +39,14 @@ public class App {
                 operator = parser.parseOperator(sc.nextLine());
             }catch(WrongInputException e){
                 System.out.println(e.getMessage());
+                System.out.println();
+                continue;
             }
 
             // 정수일 때와 실수일 때 구분하여 출력
             // TODO: 중복되는 코드를 어떻게 나누면 좋을지...
-            try {
+            // 1번 방법 :
+            /*try {
                 if ((num1 % 1 == 0) && (num2 % 1 == 0)) {
                     ArithmeticCalculator<Integer> calculator = new ArithmeticCalculator<>(operator, (int) num1, (int) num2);
                     result = calculator.calculate();
@@ -53,6 +61,22 @@ public class App {
                 }
             } catch (WrongInputException e) {
                 System.out.println(e.getMessage());
+            }*/
+
+            // 2번 방법 :
+            boolean isInteger = (num1 % 1 == 0) && (num2 % 1 == 0);
+
+            if(isInteger){
+                calculator = new ArithmeticCalculator<>(operator, (int) num1, (int) num2);
+            }else{
+                calculator = new ArithmeticCalculator<>(operator, num1, num2);
+            }
+            result = calculator.calculate();
+            calculationHistories.add(new CalculationHistory(num1, num2, operator, result));
+            if(isInteger) {
+                System.out.println("결과 : "+(int)result);
+            }else {
+                System.out.println("결과 : "+result);
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");

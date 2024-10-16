@@ -24,20 +24,8 @@ public class ArithmeticCalculator<T extends Number> {
         }
     }
 
-    public void setNumber(int index, T num){
-        if(index == 1){
-            number1 = num;
-        }else if(index == 2){
-            number2 = num;
-        }
-    }
-
-    public double calculate() throws WrongInputException {
-        if(operatorType == null){
-            throw new WrongInputException(Character.toString(operator));
-        }else {
-            Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
-            return result.doubleValue();
-        }
+    public double calculate() {
+        Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
+        return result.doubleValue();
     }
 }

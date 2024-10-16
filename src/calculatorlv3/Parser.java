@@ -3,8 +3,8 @@ package calculatorlv3;
 import java.util.regex.Pattern;
 
 enum ParserType{
-    OPERATION_REG("[+\\-*/]"),
-    NUMBER_REG("^[0-9]*$");
+    // NUMBER_REG("^[0-9]*$"),
+    OPERATION_REG("[+\\-*/]");
 
     final private String reg;
 
@@ -19,9 +19,11 @@ enum ParserType{
 
 public class Parser {
     public double parseNumber(String numberInput) throws WrongInputException {
-        if(Pattern.matches(ParserType.NUMBER_REG.getReg(), numberInput)){
+        try{
             return Double.parseDouble(numberInput);
-        }else throw new WrongInputException(numberInput);
+        }catch(Exception e){
+            throw new WrongInputException(numberInput);
+        }
     }
 
     public char parseOperator(String operatorInput) throws WrongInputException {
