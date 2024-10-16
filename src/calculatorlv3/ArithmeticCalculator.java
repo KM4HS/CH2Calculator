@@ -1,11 +1,18 @@
 package calculatorlv3;
 
+import static calculatorlv3.OperatorType.SUM;
+
 public class ArithmeticCalculator<T extends Number> {
     OperatorType operatorType;
+    T number1;
+    T number2;
 
-    ArithmeticCalculator(char operator){
-        if(operator == OperatorType.SUM.getOperator()){
-            operatorType = OperatorType.SUM;
+    ArithmeticCalculator(char operator, T number1, T number2){
+        this.number1 = number1;
+        this.number2 = number2;
+
+        if(operator == SUM.getOperator()){
+            operatorType = SUM;
         }else if(operator == OperatorType.SUBTRACT.getOperator()){
             operatorType = OperatorType.SUBTRACT;
         }else if(operator == OperatorType.DIVIDE.getOperator()){
@@ -19,32 +26,8 @@ public class ArithmeticCalculator<T extends Number> {
         }
     }
 
-    public T calculate(T number1, T number2){
+    public double calculate(){
         Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
-        return (T)Double.valueOf(result.doubleValue());
-        /*try{
-            return (T)Integer.valueOf(result.intValue());
-        }catch(Exception e){
-
-        }*/
+        return result.doubleValue();
     }
 }
-
-/*class Results{
-    private int intResult;
-    private double doubleResult;
-
-    public void setIntResult(int intResult) {
-        this.intResult = intResult;
-    }
-    public void setDoubleResult(double doubleResult) {
-        this.doubleResult = doubleResult;
-    }
-
-    public int getIntResult(){
-        return (int)doubleResult + intResult;
-    }
-    public double getDoubleResult(){
-        return doubleResult+intResult;
-    }
-}*/
