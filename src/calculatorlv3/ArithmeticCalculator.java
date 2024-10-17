@@ -1,5 +1,11 @@
 package calculatorlv3;
 
+/*
+ Double, Integer 두 타입으로 피연산자를 받습니다.
+ OperatorType enum 과 비교하여 연산 방법을 설정합니다.
+ calculate() 는 설정한 방법의 연산을 진행하고, 결과를 double 로 반환합니다.
+ */
+
 public class ArithmeticCalculator<T extends Number> {
     OperatorType operatorType;
     char operator;
@@ -19,14 +25,9 @@ public class ArithmeticCalculator<T extends Number> {
             operatorType = OperatorType.DIVIDE;
         }else if(operator == OperatorType.MULTIPLY.getOperator()){
             operatorType = OperatorType.MULTIPLY;
-        }else{
-            this.operatorType = null;
         }
     }
 
-    // TODO: 연산자가 나눗셈일 때 예외 처리
-    //     - 정수형 2개 입력이어도 실수로 출력
-    //     - 분모가 0일 때 예외 던지기
     public double calculate() {
         Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
         return result.doubleValue();

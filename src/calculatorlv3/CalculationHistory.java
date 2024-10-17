@@ -3,6 +3,14 @@ package calculatorlv3;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ 결과 데이터 관리를 위한 클래스입니다.
+ ArrayList 에 연산에 사용된 숫자, 연산자, 결과를 저장합니다.
+ 메서드를 통해 외부에서 간접적으로 결과 데이터의 삭제, 추가, 조회가 가능합니다.
+ String 형식으로 결과 데이터를 출력합니다.
+ 출력 메서드에 인자를 받으면 해당 숫자보다 큰 값으로 필터링하여 데이터를 출력합니다.
+*/
+
 public class CalculationHistory {
     double number1;
     double number2;

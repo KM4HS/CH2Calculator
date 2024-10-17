@@ -2,6 +2,16 @@ package calculatorlv3;
 
 import java.util.Scanner;
 
+/*
+ 계산기 실행을 위한 main 메서드가 있는 클래스입니다.
+ String 으로 입력값을 받고, Parser 에서 변환값을 받습니다.
+ 입력받은 값이 둘 다 정수면 int, 하나라도 실수면 double 로 계산기 클래스에 입력값을 넘깁니다.
+ 반환받은 결과값이 정수면 정수, 실수면 실수형으로 출력합니다.
+
+ CalculationHistory 클래스를 통해 결과 데이터를 저장합니다.
+ 또한, 특정 숫자 이상의 결과값을 필터링합니다.
+*/
+
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
