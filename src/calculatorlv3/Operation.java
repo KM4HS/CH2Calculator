@@ -13,21 +13,21 @@ class AddOperation implements Operation{
 
 class SubtractOperation implements Operation{
     @Override
-    public double apply(double number1, double number2){
+    public double apply(double number1, double number2) {
         return number1 - number2;
     }
 }
 
 class MultiplyOperation implements Operation{
     @Override
-    public double apply(double number1, double number2){
+    public double apply(double number1, double number2) {
         return number1 * number2;
     }
 }
 
-class DivideOperation implements Operation{
+class DivideOperation implements Operation {
     @Override
-    public double apply(double number1, double number2){
+    public double apply(double number1, double number2) {
         return number1 / number2;
     }
 }

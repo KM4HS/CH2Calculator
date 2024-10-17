@@ -68,11 +68,17 @@ public class App {
             if(isInteger){
                 calculator = new ArithmeticCalculator<>(operator, (int) num1, (int) num2);
             }else{
-                calculator = new ArithmeticCalculator<>(operator, num1, num2);
+                if(operator==OperatorType.DIVIDE.getOperator() && num2==0){
+                    System.out.println("나누는 숫자는 0이 될 수 없습니다.");
+                    System.out.println();
+                    continue;
+                }else{
+                    calculator = new ArithmeticCalculator<>(operator, num1, num2);
+                }
             }
             result = calculator.calculate();
             calculationHistory.addHistories(num1, num2, operator, result);
-            if(isInteger) {
+            if(isInteger && operator!=OperatorType.DIVIDE.getOperator()) {
                 System.out.println("결과 : "+(int)result);
             }else {
                 System.out.println("결과 : "+result);
