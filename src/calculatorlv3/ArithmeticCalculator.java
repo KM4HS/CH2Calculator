@@ -13,20 +13,12 @@ public class ArithmeticCalculator<T extends Number> {
      * @param number1  : 첫번째 피연산자
      * @param number2  : 두번째 피연산자
      */
-    ArithmeticCalculator(char operator, T number1, T number2) {
+    ArithmeticCalculator(char operator, T number1, T number2) throws WrongInputException {
         // this.operator = operator;
         this.number1 = number1;
         this.number2 = number2;
 
-        try {
-            operatorType = OperatorType.fromOperator(operator);
-        } catch (WrongInputException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public boolean isTypeNull() {
-        return operatorType == null;
+        operatorType = OperatorType.fromOperator(operator);
     }
 
     /**

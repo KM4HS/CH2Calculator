@@ -31,9 +31,6 @@ public class App {
                 } else {
                     calculator = new ArithmeticCalculator<>(operator, num1, num2);
                 }
-                if (calculator.isTypeNull()) {
-                    continue;
-                }
                 result = calculator.calculate();
 
                 calculationHistory.addHistories(num1, num2, operator, result);

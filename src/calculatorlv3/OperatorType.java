@@ -31,10 +31,6 @@ public enum OperatorType {
         throw new WrongInputException(Character.toString(operator));
     }
 
-    public char getSymbol() {
-        return this.symbol;
-    }
-
     public double calculate(double number1, double number2) throws WrongInputException {
         return this.operation.apply(number1, number2);
     }
