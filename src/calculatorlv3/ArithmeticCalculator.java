@@ -1,35 +1,38 @@
 package calculatorlv3;
 
-/*
- Double, Integer 두 타입으로 피연산자를 받습니다.
- OperatorType enum 과 비교하여 연산 방법을 설정합니다.
- calculate() 는 설정한 방법의 연산을 진행하고, 결과를 double 로 반환합니다.
- */
-
 public class ArithmeticCalculator<T extends Number> {
-    OperatorType operatorType;
-    char operator;
-    T number1;
-    T number2;
+    private OperatorType operatorType;
+    private final T number1;
+    private final T number2;
 
-    ArithmeticCalculator(char operator, T number1, T number2){
-        this.operator = operator;
+    /**
+     * 연산 기호와 피연산자를 받는 생성자
+     * {@link OperatorType}의 fromOperator()로 기호에 따른 연산
+     *
+     * @param operator : 사칙연산 기호
+     * @param number1  : 첫번째 피연산자
+     * @param number2  : 두번째 피연산자
+     */
+    ArithmeticCalculator(char operator, T number1, T number2) {
+        // this.operator = operator;
         this.number1 = number1;
         this.number2 = number2;
 
-        if(operator == OperatorType.SUM.getOperator()){
-            operatorType = OperatorType.SUM;
-        }else if(operator == OperatorType.SUBTRACT.getOperator()){
-            operatorType = OperatorType.SUBTRACT;
-        }else if(operator == OperatorType.DIVIDE.getOperator()){
-            operatorType = OperatorType.DIVIDE;
-        }else if(operator == OperatorType.MULTIPLY.getOperator()){
-            operatorType = OperatorType.MULTIPLY;
+        try {
+            operatorType = OperatorType.fromOperator(operator);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public double calculate() {
-        Number result = operatorType.calculate(number1.doubleValue(), number2.doubleValue());
-        return result.doubleValue();
+    public boolean isTypeNull() {
+        return operatorType == null;
+    }
+
+    /**
+     * @return : {@link OperatorType}에서의 연산 결과를 리턴
+     */
+    public double calculate() throws WrongInputException {
+        return operatorType.calculate(number1.doubleValue(), number2.doubleValue());
     }
 }

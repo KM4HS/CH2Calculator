@@ -1,28 +1,41 @@
 package calculatorlv3;
 
-/*
- 사칙연산 타입과 연산 클래스를 저장합니다.
- calculate(double, double)는 Number 타입의 결과를 반환합니다.
-*/
 
-public enum OperatorType{
+public enum OperatorType {
     SUM('+', new AddOperation()),
     SUBTRACT('-', new SubtractOperation()),
     MULTIPLY('*', new MultiplyOperation()),
     DIVIDE('/', new DivideOperation());
 
-    final private char operator;
+    final private char symbol;
     final private Operation operation;
 
-    OperatorType(char operator, Operation operation){
-        this.operator = operator;
+    OperatorType(char symbol, Operation operation) {
+        this.symbol = symbol;
         this.operation = operation;
     }
 
-    public char getOperator(){
-        return this.operator;
+    /**
+     * 연산 기호(symbol)과 해당하는 연산식을 제공한다
+     *
+     * @param operator : 사칙연산 기호
+     * @return : 사칙연산 기호에 해당하는 OperatorType value 를 반환
+     * @throws WrongInputException : 입력값이 사칙연산 기호가 아님 -> operator : 잘못된 연산 기호입니다.
+     */
+    public static OperatorType fromOperator(char operator) throws WrongInputException {
+        for (OperatorType type : OperatorType.values()) {
+            if (type.symbol == operator) {
+                return type;
+            }
+        }
+        throw new WrongInputException(Character.toString(operator));
     }
-    public Number calculate(double number1, double number2){
+
+    public char getSymbol() {
+        return this.symbol;
+    }
+
+    public double calculate(double number1, double number2) throws WrongInputException {
         return this.operation.apply(number1, number2);
     }
 }
